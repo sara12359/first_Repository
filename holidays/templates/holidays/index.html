@@ -1,0 +1,62 @@
+{% extends 'holidays/base.html' %}
+{% block title %}Holiday Explorer - Discover World Holidays{% endblock %}
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <div class="logo-container">
+            <div class="logo-icon">🌍</div>
+            <h1 class="hero-title">Holiday Explorer</h1>
+        </div>
+        <p class="hero-subtitle">Discover holidays from around the world</p>
+    </div>
+</div>
+<div class="search-section">
+    <div class="search-card">
+        <h2 class="search-title">Search Holidays</h2>
+        <form id="holiday-form" class="search-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="country" class="form-label">Country</label>
+                    <select id="country" name="country" class="form-select" required>
+                        <option value="">Select a country</option>
+                        {% for code, name in countries %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year" class="form-label">Year</label>
+                    <select id="year" name="year" class="form-select" required>
+                        {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="search-btn" id="search-btn">
+                <span class="btn-text">Search Holidays</span>
+                <span class="btn-icon">🔍</span>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="results-section" id="results-section">
+    <div class="loading-spinner" id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Fetching holidays...</p>
+    </div>
+    <div class="holidays-grid" id="holidays-grid"></div>
+    <div class="no-results" id="no-results" style="display: none;">
+        <div class="no-results-icon">📅</div>
+        <p>No holidays found for the selected criteria.</p>
+    </div>
+    <div class="error-message" id="error-message" style="display: none;">
+        <div class="error-icon">⚠️</div>
+        <p id="error-text">An error occurred. Please try again.</p>
+    </div>
+</div>
+<footer class="footer">
+    <p>Powered by <a href="https://www.abstractapi.com/holidays-api" target="_blank" rel="noopener">AbstractAPI</a> •
+        Made with ❤️</p>
+</footer>
+{% endblock %}
