@@ -1,7 +1,7 @@
 """
 Django settings for holiday_project project.
 """
-
+#hello
 from pathlib import Path
 import os
 
